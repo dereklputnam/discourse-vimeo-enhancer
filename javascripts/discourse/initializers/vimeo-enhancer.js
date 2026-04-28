@@ -39,11 +39,25 @@ export default {
       });
 
       // --- Post decoration ---
-      // Runs on every cooked post element. Registers Vimeo event listeners
-      // and ensures iframes are set up for postMessage communication.
+      // Runs on every cooked post element. Tightens spacing around Vimeo iframes
+      // and sets up postMessage communication for play/pause tracking.
+      // We use JS here instead of CSS :has() because :has() with attribute selectors
+      // is unreliable across Discourse's CSS pipeline.
       api.decorateCookedElement(
         (element) => {
           element.querySelectorAll('iframe[src*="player.vimeo.com"]').forEach((iframe) => {
+            // Tighten margin on the element immediately before the iframe
+            const prev = iframe.previousElementSibling;
+            if (prev) {
+              prev.style.marginBottom = "0.4em";
+            }
+
+            // Tighten margin on the element immediately after the iframe
+            const next = iframe.nextElementSibling;
+            if (next) {
+              next.style.marginTop = "0.4em";
+            }
+
             // Add api=1 to the iframe src so Vimeo sends postMessage events
             try {
               const url = new URL(iframe.src);

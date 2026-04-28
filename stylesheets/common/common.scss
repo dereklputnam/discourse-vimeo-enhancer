@@ -1,29 +1,13 @@
-// Tighten spacing around Vimeo iframes in post content.
-// Discourse's HTML sanitizer strips inline styles, so this must live in the theme.
+// Base styles for Vimeo iframes in post content.
+// Spacing adjustments are handled in JS (decorateCookedElement) because
+// Discourse's HTML sanitizer strips inline styles and :has() attribute selectors
+// are unreliable in the theme CSS pipeline.
 
 .cooked {
   iframe[src*="player.vimeo.com"] {
     display: block;
     width: 100%;
     border: 0;
-  }
-
-  // Reduce bottom margin on paragraph immediately before a Vimeo iframe
-  p:has(+ iframe[src*="player.vimeo.com"]),
-  p:has(+ div > iframe[src*="player.vimeo.com"]) {
-    margin-bottom: 0.4em;
-  }
-
-  // Reduce top margin on element immediately after a Vimeo iframe
-  iframe[src*="player.vimeo.com"] + p,
-  div:has(> iframe[src*="player.vimeo.com"]) + p,
-  iframe[src*="player.vimeo.com"] + h2,
-  iframe[src*="player.vimeo.com"] + h3,
-  iframe[src*="player.vimeo.com"] + ul,
-  div:has(> iframe[src*="player.vimeo.com"]) + h2,
-  div:has(> iframe[src*="player.vimeo.com"]) + h3,
-  div:has(> iframe[src*="player.vimeo.com"]) + ul {
-    margin-top: 0.4em;
   }
 }
 
