@@ -1,0 +1,3 @@
+mini_player_enabled:
+  default: true
+  type: bool
