@@ -49,13 +49,13 @@ export default {
             // Tighten margin on the element immediately before the iframe
             const prev = iframe.previousElementSibling;
             if (prev) {
-              prev.style.marginBottom = "0.4em";
+              prev.style.marginBottom = "3px";
             }
 
             // Tighten margin on the element immediately after the iframe
             const next = iframe.nextElementSibling;
             if (next) {
-              next.style.marginTop = "0.4em";
+              next.style.marginTop = "9px";
             }
 
             // Add api=1 to the iframe src so Vimeo sends postMessage events
